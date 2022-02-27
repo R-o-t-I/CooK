@@ -22,7 +22,7 @@ import bridge from '@vkontakte/vk-bridge';
 let isInfoUser = false
 let infoUser = ['Загрузка...']
 
-function ProfilePanelBase({isDesktop, router}) {
+function ProfilePanel({isDesktop, router}) {
     const [infoUsers, setInfoUser] = useState(infoUser)
 
     useEffect(() => {
@@ -32,7 +32,7 @@ function ProfilePanelBase({isDesktop, router}) {
     })
 
     async function getInfoUser() {
-        router.toPopout(<ScreenSpinner/>)
+        router.toPopout(/*<ScreenSpinner/>*/)
 
         let user_info = await bridge.send('VKWebAppGetUserInfo');
         infoUser[0] = user_info.first_name + ' ' + user_info.last_name
@@ -93,4 +93,4 @@ function ProfilePanelBase({isDesktop, router}) {
     );
 }
 
-export default ProfilePanelBase;
+export default ProfilePanel;

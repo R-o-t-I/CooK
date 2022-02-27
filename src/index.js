@@ -14,27 +14,27 @@ import { AdaptivityProvider } from '@vkontakte/vkui';
 import bridge from '@vkontakte/vk-bridge';
 
 bridge.subscribe((e) => {
-    switch (e.detail.type) {
-        case 'VKWebAppUpdateConfig':
-            let schemeAttribute = document.createAttribute('scheme');
-            schemeAttribute.value = e.detail.data.scheme ? e.detail.data.scheme : 'client_light';
-            document.body.attributes.setNamedItem(schemeAttribute);
-            break;
+	switch (e.detail.type) {
+		case 'VKWebAppUpdateConfig':
+			let schemeAttribute = document.createAttribute('scheme');
+			schemeAttribute.value = e.detail.data.scheme ? e.detail.data.scheme : 'client_light';
+			document.body.attributes.setNamedItem(schemeAttribute);
+			break;
 
-        default:
-            break;
-    }
+		default:
+			break;
+	}
 })
 
 bridge.send('VKWebAppInit', {})
 
 ReactDOM.render(
-    <Router structure={structure}>
-        <AdaptivityProvider>
-            <App/>
-        </AdaptivityProvider>
-    </Router>,
-    document.getElementById('root')
+	<Router structure={structure}>
+		<AdaptivityProvider>
+			<App/>
+		</AdaptivityProvider>
+	</Router>,
+	document.getElementById('root')
 );
 
 import('./eruda.js').then(({ default: eruda }) => {}) 

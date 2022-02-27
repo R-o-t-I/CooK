@@ -9,8 +9,51 @@ const structure = [
 			},
 
 			{
-				id: "placeholder",
-				hash: '/placeholder'
+				id: "search",
+				hash: '/search'
+			},
+
+			{
+				id: "filter",
+				hash: '/filter'
+			},
+
+			{
+				id: "exampleRicept",
+				hash: '/exampleRicept'
+			}
+		]
+	},
+
+	{
+		id: "blogs",
+		hash: "blogs",
+		panels: [
+			{
+				id: "base",
+				hash: '/base'
+			}
+		]
+	},
+
+	{
+		id: "add",
+		hash: "add",
+		panels: [
+			{
+				id: "base",
+				hash: '/base'
+			}
+		]
+	},
+
+	{
+		id: "notifications",
+		hash: "notifications",
+		panels: [
+			{
+				id: "base",
+				hash: '/base'
 			}
 		]
 	},

@@ -1,6 +1,8 @@
+/* Импорт какой-то херни, без которой не работает все */
 import React, { lazy, Suspense } from 'react';
 import { withRouter } from 'react-router-vkminiapps';
 
+/* Импорт компонентов */
 import {
   ConfigProvider,
   AppRoot,
@@ -17,16 +19,29 @@ import {
   withAdaptivity,
 } from "@vkontakte/vkui";
 
+/* Таббар */
 import DesktopNavigation from './js/components/navigation/desktop';
 import MobailNavigation from './js/components/navigation/mobail';
 
+/* Мадалки */
 import HomeBotsListModal from './js/components/modals/HomeBotsListModal';
 import HomeBotInfoModal from './js/components/modals/HomeBotInfoModal';
 
-const HomePanelBase = lazy(() => import('./js/panels/home/base'));
-const HomePanelPlaceholder = lazy(() => import('./js/panels/home/placeholder'));
-const ProfilePanelBase = lazy(() => import('./js/panels/profile/base'));
+/* Панели */
+const HomePanel = lazy(() => import('./js/panels/home/base'));
+const SearchPanel = lazy(() => import('./js/panels/home/search'));
+const FilterPanel = lazy(() => import('./js/panels/home/filter'));
+const RiceptPanel = lazy(() => import('./js/panels/home/exampleRicept'));
 
+const BlogsPanel = lazy(() => import('./js/panels/blogs/base'));
+
+const AddPanel = lazy(() => import('./js/panels/add/base'));
+
+const NotificationsPanel = lazy(() => import('./js/panels/notifications/base'));
+
+const ProfilePanel = lazy(() => import('./js/panels/profile/base'));
+
+/* Начало кода */
 const App = withAdaptivity(({ viewWidth, router }) => {
   const setActiveView = (e) => router.toView(e.currentTarget.dataset.id)
   
@@ -60,9 +75,9 @@ const App = withAdaptivity(({ viewWidth, router }) => {
           <SplitCol
             animate={!isDesktop}
             spaced={isDesktop}
-            width={isDesktop ? '560px' : '100%'}
-            maxWidth={isDesktop ? '560px' : '100%'}
-          >   
+            width={isDesktop ? '734px' : '100%'}
+            maxWidth={isDesktop ? '734px' : '100%'}
+          >
             <Epic 
               activeStory={router.activeView} 
               tabbar={!isDesktop && 
@@ -80,13 +95,70 @@ const App = withAdaptivity(({ viewWidth, router }) => {
               >
                 <Panel id='base'>
                   <Suspense fallback={<ScreenSpinner/>}>
-                    <HomePanelBase router={router}/>
+                    <HomePanel router={router}/>
                   </Suspense>
                 </Panel>
-
-                <Panel id='placeholder'>
+                <Panel id='search'>
                   <Suspense fallback={<ScreenSpinner/>}>
-                    <HomePanelPlaceholder router={router}/>
+                    <SearchPanel router={router}/>
+                  </Suspense>
+                </Panel>
+                <Panel id='filter'>
+                  <Suspense fallback={<ScreenSpinner/>}>
+                    <FilterPanel router={router}/>
+                  </Suspense>
+                </Panel>
+                <Panel id='exampleRicept'>
+                  <Suspense fallback={<ScreenSpinner/>}>
+                    <RiceptPanel router={router}/>
+                  </Suspense>
+                </Panel>
+              </View>
+
+              <View 
+                id="blogs"
+                activePanel={router.activePanel}
+                popout={router.popout}
+                modal={modals}
+              >
+                <Panel id='base'>
+                  <Suspense fallback={<ScreenSpinner/>}>
+                    <BlogsPanel
+                      router={router}
+                      isDesktop={isDesktop}
+                    />
+                  </Suspense>
+                </Panel>
+              </View>
+
+              <View 
+                id="add"
+                activePanel={router.activePanel}
+                popout={router.popout}
+                modal={modals}
+              >
+                <Panel id='base'>
+                  <Suspense fallback={<ScreenSpinner/>}>
+                    <AddPanel
+                      router={router}
+                      isDesktop={isDesktop}
+                    />
+                  </Suspense>
+                </Panel>
+              </View>
+
+              <View 
+                id="notifications"
+                activePanel={router.activePanel}
+                popout={router.popout}
+                modal={modals}
+              >
+                <Panel id='base'>
+                  <Suspense fallback={<ScreenSpinner/>}>
+                    <NotificationsPanel
+                      router={router}
+                      isDesktop={isDesktop}
+                    />
                   </Suspense>
                 </Panel>
               </View>
@@ -99,7 +171,7 @@ const App = withAdaptivity(({ viewWidth, router }) => {
               >
                 <Panel id='base'>
                   <Suspense fallback={<ScreenSpinner/>}>
-                    <ProfilePanelBase 
+                    <ProfilePanel
                       router={router}
                       isDesktop={isDesktop}
                     />
@@ -109,7 +181,7 @@ const App = withAdaptivity(({ viewWidth, router }) => {
             </Epic>
           </SplitCol>
 
-          {isDesktop && 
+          {isDesktop &&
             <DesktopNavigation
               hasHeader={hasHeader}
               setActiveView={setActiveView}
