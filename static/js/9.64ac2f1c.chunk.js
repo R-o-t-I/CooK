@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[9],{221:function(e,n,t){"use strict";t.r(n);var a=t(0),r=t.n(a),l=t(3);n.default=function(e){return e.router,r.a.createElement(r.a.Fragment,null,r.a.createElement(l.A,{separator:!0},"Blogs"),r.a.createElement(l.m,null))}}}]);

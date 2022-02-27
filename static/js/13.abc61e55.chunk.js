@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[13],{223:function(e,n,t){"use strict";t.r(n);var a=t(0),r=t.n(a),o=t(3);n.default=function(e){return e.router,r.a.createElement(r.a.Fragment,null,r.a.createElement(o.A,{separator:!0},"Notifications"),r.a.createElement(o.m,null))}}}]);
