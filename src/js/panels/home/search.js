@@ -7,23 +7,34 @@ import {
   Search,
   Cell,
   Avatar,
-  List
+  List,
+  VKCOM
 } from "@vkontakte/vkui";
 
 import {
   Icon24Filter
 } from '@vkontakte/icons';
 
-function SearchPanel({router}) {
+function SearchPanel({router, platform}) {
     
   return(
     <>
-      <PanelHeader
-        separator={false}
-        left={<PanelHeaderBack onClick={() => router.toBack()} />}
-      >
-        Поиск
-      </PanelHeader>
+      {platform === VKCOM ?
+        <PanelHeader
+          separator={true}
+          left={<PanelHeaderBack onClick={() => router.toBack()} label="Назад" />}
+        >
+          Поиск
+        </PanelHeader>
+      : undefined}
+      {platform !== VKCOM ?
+        <PanelHeader
+          separator={false}
+          left={<PanelHeaderBack onClick={() => router.toBack()} />}
+        >
+          Поиск
+        </PanelHeader>
+      : undefined}
       <Group>
         <Search
           placeholder="Найти рецепт"

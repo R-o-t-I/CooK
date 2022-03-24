@@ -11,7 +11,7 @@ import {
 import {
   Icon28AddCircleOutline,
   Icon28MortarOutline,
-  Icon28Newsfeed,
+  Icon28ClapperboardOutline,
   Icon28Profile
 } from '@vkontakte/icons';
 
@@ -35,7 +35,7 @@ function DesktopNavigation({hasHeader, setActiveView, router}) {
             data-id='blogs'
             onClick={setActiveView}
             disabled={router.activeView === 'blogs'}
-            before={<Icon28Newsfeed />}
+            before={<Icon28ClapperboardOutline />}
             className={router.activeView === 'blogs' ? 'activeViewCell' : ''}
           >
             Блоги

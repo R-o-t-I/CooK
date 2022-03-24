@@ -95,22 +95,33 @@ const App = withAdaptivity(({ viewWidth, router }) => {
               >
                 <Panel id='base'>
                   <Suspense fallback={<ScreenSpinner/>}>
-                    <HomePanel router={router}/>
+                    <HomePanel
+                      router={router}
+                      platform={platform}
+                    />
                   </Suspense>
                 </Panel>
                 <Panel id='search'>
                   <Suspense fallback={<ScreenSpinner/>}>
-                    <SearchPanel router={router}/>
+                    <SearchPanel
+                      router={router}
+                      platform={platform}
+                    />
                   </Suspense>
                 </Panel>
                 <Panel id='filter'>
                   <Suspense fallback={<ScreenSpinner/>}>
-                    <FilterPanel router={router}/>
+                    <FilterPanel
+                      router={router}
+                      platform={platform}
+                    />
                   </Suspense>
                 </Panel>
                 <Panel id='exampleRicept'>
                   <Suspense fallback={<ScreenSpinner/>}>
-                    <RiceptPanel router={router}/>
+                    <RiceptPanel
+                      router={router}
+                      platform={platform}/>
                   </Suspense>
                 </Panel>
               </View>
@@ -126,6 +137,7 @@ const App = withAdaptivity(({ viewWidth, router }) => {
                     <BlogsPanel
                       router={router}
                       isDesktop={isDesktop}
+                      platform={platform}
                     />
                   </Suspense>
                 </Panel>
@@ -142,6 +154,7 @@ const App = withAdaptivity(({ viewWidth, router }) => {
                     <AddPanel
                       router={router}
                       isDesktop={isDesktop}
+                      platform={platform}
                     />
                   </Suspense>
                 </Panel>
@@ -158,6 +171,7 @@ const App = withAdaptivity(({ viewWidth, router }) => {
                     <NotificationsPanel
                       router={router}
                       isDesktop={isDesktop}
+                      platform={platform}
                     />
                   </Suspense>
                 </Panel>
@@ -174,6 +188,7 @@ const App = withAdaptivity(({ viewWidth, router }) => {
                     <ProfilePanel
                       router={router}
                       isDesktop={isDesktop}
+                      platform={platform}
                     />
                   </Suspense>
                 </Panel>

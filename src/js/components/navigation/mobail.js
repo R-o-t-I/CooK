@@ -7,9 +7,8 @@ import {
 
 import {
 	Icon28AddCircleOutline,
-	Icon28HomeOutline,
 	Icon28MortarOutline,
-	Icon28Newsfeed,
+	Icon28ClapperboardOutline,
 	Icon28Notifications,
 	Icon28Profile
 } from '@vkontakte/icons';
@@ -42,7 +41,7 @@ function MobailNavigation({setActiveView, router}) {
 				onClick={openView}
 				text='Блоги'
 			>
-				<Icon28Newsfeed />
+				<Icon28ClapperboardOutline />
 			</TabbarItem>
 
 			<TabbarItem

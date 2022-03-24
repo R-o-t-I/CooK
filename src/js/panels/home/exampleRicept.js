@@ -12,7 +12,12 @@ import {
   CardGrid,
   Card,
   MiniInfoCell,
-  Avatar
+  Avatar,
+  FixedLayout,
+  Button,
+  Div,
+  platform,
+  VKCOM
 } from "@vkontakte/vkui";
 
 import {
@@ -21,20 +26,31 @@ import {
   Icon24AddOutline,
   Icon24MinusOutline,
   Icon28ChefHatOutline,
-  Icon28ClockOutline
+  Icon28ClockOutline,
+  Icon28ThumbsUpOutline
 } from '@vkontakte/icons';
 
-function RiceptPanel({router}) {
+function RiceptPanel({router, platform}) {
   const [activeTab, setActiveTab] = useState('ingredients')
     
   return(
-    <div className="backgroundPageRicept">
-      <PanelHeader 
-        separator={false}
-        left={<PanelHeaderBack onClick={() => router.toBack()}/>}
-      >
-        Рецепт
-      </PanelHeader>
+    <div className="backgroundPage">
+      {platform === VKCOM ?
+        <PanelHeader
+          separator={true}
+          left={<PanelHeaderBack onClick={() => router.toBack()} label="Назад" />}
+        >
+          Рецепт
+        </PanelHeader>
+      : undefined}
+      {platform !== VKCOM ?
+        <PanelHeader
+          separator={false}
+          left={<PanelHeaderBack onClick={() => router.toBack()} />}
+        >
+          Рецепт
+        </PanelHeader>
+      : undefined}
       <div className="blockPortionsAndKkalAndImg">
         <img className="imgRicept" src="https://gotovimop.com/wp-content/uploads/2021/03/bliny-po-starinnomu-receptu-na-drozhzhah.jpg" />
       </div>
@@ -78,9 +94,61 @@ function RiceptPanel({router}) {
               </div>
             </div>
           </div>
+          <Div className="buttonLike">
+            <Button
+              stretched
+              mode="secondary"
+              size="m"
+              style={{marginRight: 4}}
+              before={<Icon28ThumbsUpOutline width={20} height={20} />}
+            >
+              Нравится
+            </Button>
+            <Button
+              stretched
+              mode="secondary"
+              size="m"
+              style={{marginLeft: 4}}
+              before={<Icon28ThumbsUpOutline width={20} height={20} style={{transform: "rotate(180deg)"}} />}
+            >
+              Не нравится
+            </Button>
+          </Div>
         </div>
       </div>
       <div className="infoBlokTabs">
+      {platform === VKCOM ?
+        <Tabs className="blokTabsPC">
+          <HorizontalScroll>
+            <TabsItem
+              onClick={() => setActiveTab ('ingredients')}
+              selected={activeTab === 'ingredients'}
+            >
+              Ингредиенты
+            </TabsItem>
+            <TabsItem
+              onClick={() => setActiveTab ('instruction')}
+              selected={activeTab === 'instruction'}
+            >
+              Инструкция
+            </TabsItem>
+            <TabsItem
+              onClick={() => setActiveTab ('info')}
+              selected={activeTab === 'info'}
+            >
+              Информация
+            </TabsItem>
+            <TabsItem
+              onClick={() => setActiveTab ('comments')}
+              selected={activeTab === 'comments'}
+            >
+              Отзывы
+            </TabsItem>
+          </HorizontalScroll>
+        </Tabs>
+        : undefined}
+
+        {platform !== VKCOM ?
         <Tabs>
           <HorizontalScroll>
             <TabsItem
@@ -96,7 +164,7 @@ function RiceptPanel({router}) {
               Инструкция
             </TabsItem>
             <TabsItem
-ъ              onClick={() => setActiveTab ('info')}
+              onClick={() => setActiveTab ('info')}
               selected={activeTab === 'info'}
             >
               Информация
@@ -109,8 +177,9 @@ function RiceptPanel({router}) {
             </TabsItem>
           </HorizontalScroll>
         </Tabs>
+        : undefined}
 
-        {activeTab === "ingredients" ? <div className="blockIngredientsTab">
+        {activeTab === "ingredients" ? platform !== VKCOM ? <div className="blockIngredientsTab">
           <div className="blockPortions">
             <IconButton className="iconMinusBlockPortions"><Icon24MinusOutline width={40} height={40} /></IconButton>
             <div>
@@ -145,7 +214,43 @@ function RiceptPanel({router}) {
               </Cell>
             </Card>
           </CardGrid>
-        </div> : null}
+        </div> : undefined : null}
+        {activeTab === "ingredients" ? platform === VKCOM ? <div className="blockIngredientsTabPC">
+          <div className="blockPortionsPC">
+            <IconButton className="iconMinusBlockPortions"><Icon24MinusOutline width={40} height={40} /></IconButton>
+            <div>
+              <div className="numberBlockPortions">1</div>
+              <div className="descriptionBlockPortions">порции</div>
+            </div>
+            <IconButton className="iconAddBlockPortions"><Icon24AddOutline width={40} height={40} /></IconButton>
+          </div>
+          <CardGrid size="l">
+            <Card mode="outline">
+              <Cell
+                indicator="150 гр."
+                disabled
+              >
+                Тесто
+              </Cell>
+            </Card>
+            <Card mode="outline">
+              <Cell
+                indicator="150 гр."
+                disabled
+              >
+                Тесто
+              </Cell>
+            </Card>
+            <Card mode="outline">
+              <Cell
+                indicator="150 гр."
+                disabled
+              >
+                Тесто
+              </Cell>
+            </Card>
+          </CardGrid>
+        </div> : undefined : null}
 
         {activeTab === "instruction" ? <div>
 
